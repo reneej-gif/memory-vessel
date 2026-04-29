@@ -3,7 +3,7 @@ color sun = #FFDF22;
 color birdColor = #F5F5EF;
 color skyColor = #B4DCFF;
 color pondColor = #28503C;
-int x;
+float x;
 float birdY=0;
 float birdSpeed=0.3;
 float r1=0;
@@ -48,9 +48,12 @@ void draw() {
   if (r3>800) r3=0;
 
   noStroke();
-  brightness(500);
-  fill(240,164,157);
+  fill(240, 164, 157);
   rect(0, 0, width, height/2);
+  for (float i=0; i<350; i=i+2) {
+    stroke(245, 143+i/6, 143);
+    line(0, 0+i, width, 0+i);
+  }
 
   //sun
   for (int y=0; y<90; y=y+1) {
@@ -63,6 +66,7 @@ void draw() {
     strokeWeight(2);
     line(45-i/2, 350+i, 135+i/2, 350+i);
   }
+
   //bird movement
   birdY=birdY+birdSpeed/2;
   if (birdY>5) {
@@ -71,20 +75,34 @@ void draw() {
     birdSpeed=birdSpeed*-1;
   }
 
-  //dove?
-  stroke(227, 227, 216);
+  //some bird ?
+  noStroke();
+  fill(242, 202, 56);
+  triangle(423, 385+birdY, 437, 393+birdY, 425, 395+birdY);
   fill(birdColor);
+  stroke(227, 227, 216);
   circle(400, 395+birdY, 50);
   ellipse(410, 420+birdY, 80, 60);
 
-randomSeed(0);
-  for (int z=0; z<12; z=z+1) {
-    float a=random(0, width);
-    float b=random(50, 290);
-    float size=random(80, 200);
-    fill(230,230, 240, random(50, 200));
+
+  randomSeed(60);
+  for (int z=0; z<30; z=z+1) {
+    float a = random(0, width * 2);
+    float b = random(50, 285);
+    float size = random(90, 180);
+
+    fill(230, random(230, 240), random(240, 255), random(70, 225));
     noStroke();
-    ellipse(a, b, size, size*0.6);
-    ellipse(a+20, b+20, size, size*0.4);
+
+    ellipse(a+x,b,size, size*0.6);
+    ellipse(a+40+x, b+20, size, size*0.4);
+    
+    ellipse(a+x-(width*2+20), b, size, size*0.6);
+    ellipse(a+40+x-(width*2+20), b+20, size, size*0.4);
+  }
+
+  x=x+0.21;
+  if (x>= width*2) {
+    x=-20;
   }
 }

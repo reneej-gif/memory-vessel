@@ -78,7 +78,7 @@ void draw() {
   //some bird ?
   noStroke();
   fill(242, 202, 56);
-  triangle(423, 385+birdY, 437, 393+birdY, 425, 395+birdY);
+  triangle(423, 385+birdY, 439, 393+birdY, 425, 395+birdY);
   fill(birdColor);
   stroke(227, 227, 216);
   circle(400, 395+birdY, 50);
